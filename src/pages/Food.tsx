@@ -10,7 +10,7 @@ import { changeValue } from '../store/features/food';
 const Food: React.FC = () => {
 
     const [isLoading, setIsLoading] = useState(false);
-    const foodItems = useSelector((state: any = {}) => state.food?.value);
+    const foodItems = useSelector((state: any = {}) => state.food?.items);
 
     const dispatch = useDispatch();
 

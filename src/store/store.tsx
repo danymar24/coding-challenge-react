@@ -21,6 +21,11 @@ export const rootReducers = combineReducers({
     food: foodSlice.reducer,
 })
 const persistedReducer = persistReducer(persistConfig, rootReducers)
+
+/**
+ * Redux store
+ * Used to store all the saved data, this will save it to the local storage
+ */
 const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>

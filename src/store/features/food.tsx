@@ -3,15 +3,15 @@ import { createSlice } from '@reduxjs/toolkit';
 export const foodSlice = createSlice({
     name: 'food',
     initialState: {
-        value: [],
+        items: [],
     },
     reducers: {
         changeValue: (state, action) => {
-            state.value = action.payload;
+            return {
+                ...state,
+                items: action.payload,
+            };
         },
-        getFoodItem: (state, action) => {
-            return state.value.find((item: any) => item.fcdId === action.payload);
-        }
     },
 })
 

@@ -1,17 +1,16 @@
-import { IonButtons, IonContent, IonHeader, IonList, IonMenuButton, IonPage, IonSearchbar, IonSpinner, IonTitle, IonToolbar } from '@ionic/react';
-import { useState, useEffect } from 'react';
-import { getFoodData } from '../utils/api';
+import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './Food.css';
 import { useParams } from 'react-router';
+import { useSelector } from 'react-redux';
+import Nutrient from '../components/Nutrient';
 
 const FoodReport = () => {
 
     const { id } = useParams<{ id: string; }>();
 
-    const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [foodItem, setFoodItem] = useState<any[]>([]);
-
+    const items = useSelector((state: any = {}) => state.food?.items);
+    const item = items.find((item: any) => `${item.fdcId}` === id);
+    console.log(item);
     return (
         <IonPage>
             <IonHeader>
@@ -19,16 +18,12 @@ const FoodReport = () => {
                     <IonButtons slot="start">
                         <IonMenuButton />
                     </IonButtons>
-                    <IonTitle>Food</IonTitle>
+                    <IonTitle>{item?.description}</IonTitle>
                 </IonToolbar>
             </IonHeader>
 
             <IonContent fullscreen>
-                {isLoading && (
-                    <div className="loadingSpinner">
-                        <IonSpinner></IonSpinner>
-                    </div>
-                )}
+                {item?.foodNutrients?.map((nutrient: any) => <Nutrient name={nutrient.nutrientName} value={nutrient.nutrientNumber} unit={nutrient.unitName} />)}
             </IonContent>
         </IonPage>
     );

@@ -1,5 +1,5 @@
 import { IonItem, IonLabel } from '@ionic/react';
-import React from 'react';
+import { useHistory } from 'react-router';
 
 type FoodItemProps = {
     name: string;
@@ -7,9 +7,13 @@ type FoodItemProps = {
 }
 
 const FoodItem = ({ name, id }: FoodItemProps) => {
+    const history = useHistory();
+    const handleSelectItem = () => {
+        history.push(`/food/${id}`);
+    }
 
     return (
-        <IonItem href={`/food/${id}`}>
+        <IonItem button onClick={handleSelectItem}>
             <IonLabel>{name}</IonLabel>
         </IonItem>
     );
