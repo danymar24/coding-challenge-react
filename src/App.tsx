@@ -22,6 +22,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import Food from './pages/Food';
 
 setupIonicReact();
 
@@ -33,10 +34,13 @@ const App: React.FC = () => {
           <Menu />
           <IonRouterOutlet id="main">
             <Route path="/" exact={true}>
-              <Redirect to="/page/Inbox" />
+              <Redirect to="/page/Food" />
             </Route>
             <Route path="/page/:name" exact={true}>
               <Page />
+            </Route>
+            <Route path="/food/" exact={true}>
+              <Food />
             </Route>
           </IonRouterOutlet>
         </IonSplitPane>
