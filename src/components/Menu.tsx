@@ -11,7 +11,7 @@ import {
 } from '@ionic/react';
 
 import { useLocation } from 'react-router-dom';
-import { bookmarkOutline, pizzaOutline, pizzaSharp } from 'ionicons/icons';
+import { bookmarkOutline, pizzaOutline, pizzaSharp, heartOutline, heartSharp } from 'ionicons/icons';
 import './Menu.css';
 
 interface AppPage {
@@ -27,6 +27,12 @@ const appPages: AppPage[] = [
     url: '/Food',
     iosIcon: pizzaOutline,
     mdIcon: pizzaSharp
+  },
+  {
+    title: 'Favorites',
+    url: '/Favorites',
+    iosIcon: heartOutline,
+    mdIcon: heartSharp
   },
 ];
 

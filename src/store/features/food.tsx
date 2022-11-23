@@ -4,6 +4,7 @@ export const foodSlice = createSlice({
     name: 'food',
     initialState: {
         items: [],
+        favorites: [],
     },
     reducers: {
         changeValue: (state, action) => {
@@ -12,8 +13,23 @@ export const foodSlice = createSlice({
                 items: action.payload,
             };
         },
+        addFavorite: (state: any, action: any) => {
+            return {
+                ...state,
+                favorites: state.favorites?.concat(action.payload),
+            }
+        },
+        removeFavorite: (state: any, action: any) => {
+            const itemIndex = state.favorites?.indexOf(action.payload.fdcId);
+            if (itemIndex) {
+                return {
+                    ...state,
+                    favorites: state.favorites?.slice(itemIndex, 0),
+                }
+            }
+        }
     },
 })
 
-export const { changeValue } = foodSlice.actions;
+export const { changeValue, addFavorite, removeFavorite } = foodSlice.actions;
 export default foodSlice.reducer;

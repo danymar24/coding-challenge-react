@@ -28,6 +28,7 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
+import Favorites from './pages/Favorites';
 
 let persistor = persistStore(store)
 
@@ -53,6 +54,9 @@ const App: React.FC = () => {
                 </Route>
                 <Route path="/food/:id" exact={true}>
                   <FoodReport />
+                </Route>
+                <Route path="/favorites" exact={true}>
+                  <Favorites />
                 </Route>
               </IonRouterOutlet>
             </IonSplitPane>
