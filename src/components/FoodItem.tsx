@@ -3,11 +3,13 @@ import React from 'react';
 
 type FoodItemProps = {
     name: string;
+    id: string;
 }
 
-const FoodItem = ({ name }: FoodItemProps) => {
+const FoodItem = ({ name, id }: FoodItemProps) => {
+
     return (
-        <IonItem>
+        <IonItem href={`/food/${id}`}>
             <IonLabel>{name}</IonLabel>
         </IonItem>
     );

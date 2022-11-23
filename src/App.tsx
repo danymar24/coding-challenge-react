@@ -23,29 +23,43 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import Food from './pages/Food';
+import FoodReport from './pages/FoodReport';
+import { Provider } from 'react-redux';
+import store from './store/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
+
+let persistor = persistStore(store)
 
 setupIonicReact();
 
 const App: React.FC = () => {
   return (
-    <IonApp>
-      <IonReactRouter>
-        <IonSplitPane contentId="main">
-          <Menu />
-          <IonRouterOutlet id="main">
-            <Route path="/" exact={true}>
-              <Redirect to="/page/Food" />
-            </Route>
-            <Route path="/page/:name" exact={true}>
-              <Page />
-            </Route>
-            <Route path="/food/" exact={true}>
-              <Food />
-            </Route>
-          </IonRouterOutlet>
-        </IonSplitPane>
-      </IonReactRouter>
-    </IonApp>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <IonApp>
+          <IonReactRouter>
+            <IonSplitPane contentId="main">
+              <Menu />
+              <IonRouterOutlet id="main">
+                <Route path="/" exact={true}>
+                  <Redirect to="/page/Food" />
+                </Route>
+                <Route path="/page/:name" exact={true}>
+                  <Page />
+                </Route>
+                <Route path="/food/" exact={true}>
+                  <Food />
+                </Route>
+                <Route path="/food/:id" exact={true}>
+                  <FoodReport />
+                </Route>
+              </IonRouterOutlet>
+            </IonSplitPane>
+          </IonReactRouter>
+        </IonApp>
+      </PersistGate>
+    </Provider>
   );
 };
 

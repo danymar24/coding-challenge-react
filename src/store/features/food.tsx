@@ -9,6 +9,9 @@ export const foodSlice = createSlice({
         changeValue: (state, action) => {
             state.value = action.payload;
         },
+        getFoodItem: (state, action) => {
+            return state.value.find((item: any) => item.fcdId === action.payload);
+        }
     },
 })
 

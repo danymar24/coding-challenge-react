@@ -10,7 +10,7 @@ import { changeValue } from '../store/features/food';
 const Food: React.FC = () => {
 
     const [isLoading, setIsLoading] = useState(false);
-    const foodItems = useSelector((state: any = {}) => state.food);
+    const foodItems = useSelector((state: any = {}) => state.food?.value);
 
     const dispatch = useDispatch();
 
@@ -66,7 +66,7 @@ const Food: React.FC = () => {
                 )}
                 {foodItems && (
                     <IonList>
-                        {foodItems.map((item: any) => <FoodItem key={item.fdcId} name={item.description} id={item.fdcid}></FoodItem>)}
+                        {foodItems.map((item: any) => <FoodItem key={item.fdcId} name={item.description} id={item.fdcId}></FoodItem>)}
                     </IonList>
                 )}
             </IonContent>
