@@ -1,0 +1,7 @@
+{
+  "name": "coding-challenge-react",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
