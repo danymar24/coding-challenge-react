@@ -2,13 +2,17 @@ import { IonButtons, IonContent, IonHeader, IonList, IonMenuButton, IonPage, Ion
 import { useState } from 'react';
 import FoodItem from '../components/FoodItem';
 import { getFoodData } from '../utils/api';
+import { useDispatch, useSelector } from 'react-redux';
+
 import './Food.css';
+import { changeValue } from '../store/features/food';
 
 const Food: React.FC = () => {
 
-    const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    const [foodItems, setFoodItems] = useState<any[]>([]);
+    const foodItems = useSelector((state: any = {}) => state.food);
+
+    const dispatch = useDispatch();
 
     /**
      * Retrieves the food data from the api when the search bar value changes
@@ -28,11 +32,11 @@ const Food: React.FC = () => {
             .then(res => res.json())
             .then(result => {
                 setIsLoading(false);
-                setFoodItems(result.foods);
+                dispatch(changeValue(result.foods));
                 console.log(result);
             }, error => {
                 setIsLoading(false);
-                setError(error);
+                console.log(error);
             })
     }
 
@@ -62,7 +66,7 @@ const Food: React.FC = () => {
                 )}
                 {foodItems && (
                     <IonList>
-                        {foodItems.map((item) => <FoodItem key={item.fdcId} name={item.description}></FoodItem>)}
+                        {foodItems.map((item: any) => <FoodItem key={item.fdcId} name={item.description} id={item.fdcid}></FoodItem>)}
                     </IonList>
                 )}
             </IonContent>
